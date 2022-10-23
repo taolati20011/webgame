@@ -7,15 +7,6 @@ import com.example.webgame.response.GameDetailResponse;
 import com.example.webgame.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOError;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class GameServiceImpl implements GameService {
@@ -39,21 +30,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public void addGameDetails(Game game, MultipartFile multipartFile) {
+    public void addGameDetails(Game game) {
         gameRepository.save(game);
-    }
-
-    @Override
-    public List<GameDetailResponse> findAll() {
-        return gameRepository.findAll().stream().map(data -> {
-            GameDetailResponse gameDetailResponse = new GameDetailResponse();
-            gameDetailResponse.gameId = data.gameId;
-            gameDetailResponse.gameDescription = data.gameDescription;
-            gameDetailResponse.gameName = data.gameName;
-            gameDetailResponse.gameType = data.gameType;
-            gameDetailResponse.releaseDate = data.releaseDate;
-            gameDetailResponse.releaseLocation = data.releaseLocation;
-            return gameDetailResponse;
-        }).collect(Collectors.toList());
     }
 }
