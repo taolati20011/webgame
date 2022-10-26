@@ -8,6 +8,11 @@ import com.example.webgame.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class GameServiceImpl implements GameService {
     @Autowired
@@ -32,5 +37,19 @@ public class GameServiceImpl implements GameService {
     @Override
     public void addGameDetails(Game game) {
         gameRepository.save(game);
+    }
+
+    @Override
+    public List<GameDetailResponse> findAll() {
+        return gameRepository.findAll().stream().map(data -> {
+            GameDetailResponse gameDetailResponse = new GameDetailResponse();
+            gameDetailResponse.gameId = data.gameId;
+            gameDetailResponse.gameDescription = data.gameDescription;
+            gameDetailResponse.gameName = data.gameName;
+            gameDetailResponse.gameType = data.gameType;
+            gameDetailResponse.releaseDate = data.releaseDate;
+            gameDetailResponse.releaseLocation = data.releaseLocation;
+            return gameDetailResponse;
+        }).collect(Collectors.toList());
     }
 }

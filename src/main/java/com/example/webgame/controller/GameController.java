@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
+
 @RestController
 @RequestMapping("/api/game")
 public class GameController {
@@ -16,6 +18,11 @@ public class GameController {
     @GetMapping()
     public ResponseEntity<?> test() {
         return ResponseEntity.ok("Hello");
+    }
+
+    @GetMapping("/get-all")
+    public Collection<GameDetailResponse> games() {
+        return gameService.findAll();
     }
 
     @GetMapping("/get-detail")
