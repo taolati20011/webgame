@@ -3,6 +3,7 @@ package com.example.webgame.config;
 import com.example.webgame.filter.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -46,8 +47,13 @@ public class Config {
                 .antMatchers("/api/user/forgotpassword").permitAll()
                 .antMatchers("/api/user/resetpassword").permitAll()
                 .antMatchers("/api/user/authenticate").permitAll()
-                .antMatchers("/login*").permitAll()
                 .antMatchers("/api/user/login").permitAll()
+                .antMatchers("/login*").permitAll()
+                .antMatchers("/api/user/view-all").permitAll()
+                .antMatchers(
+                        HttpMethod.GET,
+                        "/index*", "/static/**", "/*.js", "/*.json", "/*.ico")
+                .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()

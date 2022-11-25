@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -34,7 +35,7 @@ public class UserController {
     }
 
     @GetMapping("/view-all")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+//    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     public ResponseEntity<List<UserListDTO>> getAllUser(@RequestParam(defaultValue = "0") Integer pageNo,
                                                         @RequestParam Integer pageSize) {
         return ResponseEntity.ok(userService.getAllUser(pageNo, pageSize));

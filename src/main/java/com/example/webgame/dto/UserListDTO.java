@@ -29,9 +29,9 @@ public class UserListDTO {
 
     private String userGender;
 
-    private boolean check;
-
-    private String token;
-
-    private Set<Role> roles = new HashSet<>();
+//    private boolean check;
+//
+//    private String token;
+//
+//    private Set<Role> roles = new HashSet<>();
 }

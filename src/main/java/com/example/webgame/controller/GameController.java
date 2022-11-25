@@ -30,6 +30,11 @@ public class GameController {
         return ResponseEntity.ok(gameService.getGameDetails(id));
     }
 
+    @GetMapping("/get-name")
+    public ResponseEntity<?> getGameName(@RequestParam (value = "game-id") Integer id) {
+        return ResponseEntity.ok(gameService.getGameDetails(id).gameName);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<?> addGameDetail(@RequestBody Game gameDetail) {
         gameService.addGameDetails(gameDetail);
