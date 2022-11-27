@@ -216,7 +216,7 @@ public class UserServiceImpl implements UserService {
             mimeMessageHelper.setText("TOKEN : " + token +
                     "<br>Or <a href='#'>click here</a> to change pw. " +
                     "<br>Token valid for 10 minutes", true);
-            mimeMessageHelper.setSubject(emailDTO.getSubject());
+            mimeMessageHelper.setSubject("TOKEN CHANGE PASSWORD");
 
             javaMailSender.send(mimeMessage);
             return "Mail sent Successfully";
@@ -242,7 +242,7 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("Reset password should not same as old password condition");
         }
 
-        throw new RuntimeException("Token does not exist");
+        throw new RuntimeException("Token uncorrect or token is expired (only 10 mins)");
     }
 
     @Override

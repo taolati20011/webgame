@@ -14,20 +14,20 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findByUserEmail(String email);
 
     @Query(value = """
-            select * from users u
+            select * from user u
             where u.token = ?1 and (current_timestamp() - u.created_at) < 1000
             """, nativeQuery = true)
     User findByToken(String token);
 
     @Query(value = """
-            select * from users u
+            select * from user u
             where u.token = ?1
             """, nativeQuery = true)
     User findByTokenLogin(String token);
 
     @Modifying
     @Query(value = """
-            delete from users 
+            delete from user 
             where user_id = ?1 ;
             """, nativeQuery = true)
     void deleteUserById(Long userId);

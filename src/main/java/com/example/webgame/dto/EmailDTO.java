@@ -11,7 +11,4 @@ import lombok.Setter;
 @NoArgsConstructor
 public class EmailDTO {
     private String recipient;
-    private String msgBody;
-    private String subject;
-    private String attachment;
 }
