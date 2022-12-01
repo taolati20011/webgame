@@ -50,6 +50,7 @@ public class Config {
                 .antMatchers("/api/user/login").permitAll()
                 .antMatchers("/login*").permitAll()
                 .antMatchers("/api/user/view-all").permitAll()
+                .antMatchers("/api/game/get-detail/*").permitAll()
                 .antMatchers(
                         HttpMethod.GET,
                         "/index*", "/static/**", "/*.js", "/*.json", "/*.ico")

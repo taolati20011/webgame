@@ -20,11 +20,11 @@ public class UserDTO {
     private Long userId;
 
     @NotEmpty(message = "Account can not be empty")
-    @Size(max = 50, min = 5, message = "Length: 5 -> 50 characters")
+    @Size(max = 50, min = 5, message = "Username must have length: 5 -> 50 characters")
     private String username;
 
-    @NotEmpty(message = "Địa chỉ can not be empty")
-    @Size(max = 200, message = "Maximun length 200 characters")
+    @NotEmpty(message = "Address can not be empty")
+    @Size(max = 200, message = "userAddress maximun length is 200 characters")
     private String userAddress;
 
     @NotEmpty(message = "Name can not be empty")
@@ -50,11 +50,11 @@ public class UserDTO {
 
     @NotEmpty(message = "Email can not be empty")
     @Pattern(regexp = "^\\S+@\\S+\\.\\S+$",
-            message = "Email must match the following format: abc@xyz")
+            message = "Email must match the following format: abc@xyz.cde")
     private String userEmail;
 
     @NotEmpty(message = "Gender can not be empty")
-    @Size(max = 8, min = 2, message = "Gender must match the following fomat:  Female or Male")
+    @Size(max = 8, min = 2, message = "Gender length: 2 -> 8 characters")
     private String userGender;
 
     private boolean check;
