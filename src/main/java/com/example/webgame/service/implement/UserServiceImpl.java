@@ -248,10 +248,10 @@ public class UserServiceImpl implements UserService {
                 userRepository.save(editUser);
                 return "Password Change Successful";
             }
-            throw new RuntimeException("Reset password should not same as old password condition");
+            return "Reset password should not same as old password condition";
         }
 
-        throw new RuntimeException("Token uncorrect or token is expired (only 10 mins)");
+        return "Token uncorrect or token is expired (only 10 mins)";
     }
 
     @Override

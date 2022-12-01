@@ -91,9 +91,8 @@ public class UserController {
     }
 
     @PostMapping("/resetpassword")
-    public ResponseEntity<String> resetPassword(@Valid @RequestBody ForgotPasswordDTO forgotPassworDto){
-        userService.changePassword(forgotPassworDto);
-        return ResponseEntity.ok("Password Change Successful");
+    public String resetPassword(@Valid @RequestBody ForgotPasswordDTO forgotPassworDto){
+        return userService.changePassword(forgotPassworDto);
     }
 
     @PostMapping("/authenticate")
@@ -120,7 +119,7 @@ public class UserController {
             User user = (User) authentication.getPrincipal();
             if (user != null) {
                 session.setAttribute("user", user.getUserId());
-                return ResponseEntity.ok("Authenticated Successful!");
+                return ResponseEntity.ok("Login Successful!");
             }
         }catch (BadCredentialsException ex){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("The Username or Password is Incorrect");
