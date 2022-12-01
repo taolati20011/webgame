@@ -49,11 +49,10 @@ public class UserController {
 
     @PostMapping("/signup")
     //@PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
-    public ResponseEntity<?> createUser(
+    public String createUser(
             @Valid @RequestBody UserDTO userDTO
     ) {
-        userService.createUser(userDTO);
-        return ResponseEntity.ok("Add Successful");
+        return userService.createUser(userDTO);
     }
 
     @PutMapping("/edit/{id}")

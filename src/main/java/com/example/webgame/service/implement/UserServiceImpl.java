@@ -97,7 +97,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public boolean createUser(UserDTO userDTO) {
+    public String createUser(UserDTO userDTO) {
+        if (userRepository.countEmail(userDTO.getUserEmail()) >= 1) {
+            return "Email existed! Please use another email!";
+        }
+        if (userRepository.countUsername(userDTO.getUsername()) >= 1) {
+            return "Username existed! Please use another username!";
+        }
+        if (userRepository.countPhone(userDTO.getUserPhone()) >= 1) {
+            return "Phone number have been used! Please use another phone number!";
+        }
         if (
                 userRepository.countUsername(userDTO.getUsername()) < 1 &&
                         userRepository.countEmail(userDTO.getUserEmail()) < 1 &&
@@ -132,11 +141,11 @@ public class UserServiceImpl implements UserService {
 
                 javaMailSender.send(mimeMessage);
             } catch (MessagingException e) {
-                System.out.println("Send mail error!");
+                return "Send mail error!";
             }
-            return true;
+            return "Register successful";
         }
-        throw new DuplicateRecordException("Duplicate account or phone number or email");
+        return "Duplicate account or phone number or email";
     }
 
     @Override
@@ -219,9 +228,9 @@ public class UserServiceImpl implements UserService {
             mimeMessageHelper.setSubject("TOKEN CHANGE PASSWORD");
 
             javaMailSender.send(mimeMessage);
-            return "Mail sent Successfully";
+            return "Request success, We'll send an mail to you!";
         }
-        throw new RuntimeException("Email does not exist");
+        return "Email does not exist";
     }
 
     @Override
