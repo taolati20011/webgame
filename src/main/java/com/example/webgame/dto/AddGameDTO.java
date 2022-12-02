@@ -1,28 +1,23 @@
-package com.example.webgame.entity;
+package com.example.webgame.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
-@Entity
-@Table
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Game {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer gameId;
+public class AddGameDTO {
     public String gameName;
     public String gameDescription;
     public LocalDateTime releaseDate;
     public String releaseLocation;
-    @ManyToOne
-    @JoinColumn(name="typeId", nullable = false)
-    private GameType type;
+    public Long typeId;
 }

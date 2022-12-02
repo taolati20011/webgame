@@ -1,5 +1,6 @@
 package com.example.webgame.controller;
 
+import com.example.webgame.dto.AddGameDTO;
 import com.example.webgame.entity.Game;
 import com.example.webgame.response.GameDetailResponse;
 import com.example.webgame.service.implement.GameServiceImpl;
@@ -36,7 +37,7 @@ public class GameController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addGameDetail(@RequestBody Game gameDetail) {
+    public ResponseEntity<?> addGameDetail(@RequestBody AddGameDTO gameDetail) {
         gameService.addGameDetails(gameDetail);
         return ResponseEntity.ok("Add game successful");
     }
