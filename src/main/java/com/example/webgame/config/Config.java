@@ -1,6 +1,8 @@
 package com.example.webgame.config;
 
 import com.example.webgame.filter.JwtAuthenticationFilter;
+import com.example.webgame.service.implement.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -9,15 +11,21 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = false, jsr250Enabled = false)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class Config {
+    @Autowired
+    private AuthenticationEntryPoint unauthorizedHandler;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10);
@@ -39,6 +47,8 @@ public class Config {
                 .and()
                 .csrf()
                 .disable()
+                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/signin").permitAll()
@@ -49,8 +59,8 @@ public class Config {
                 .antMatchers("/api/user/authenticate").permitAll()
                 .antMatchers("/api/user/login").permitAll()
                 .antMatchers("/login*").permitAll()
-                .antMatchers("/api/user/view-all").permitAll()
-                .antMatchers("/api/game/get-detail/*").permitAll()
+//                .antMatchers("/api/user/view-all").permitAll()
+//                .antMatchers("/api/game/get-detail/*").permitAll()
                 .antMatchers(
                         HttpMethod.GET,
                         "/index*", "/static/**", "/*.js", "/*.json", "/*.ico")

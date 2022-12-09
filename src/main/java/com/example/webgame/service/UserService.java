@@ -28,7 +28,7 @@ public interface UserService extends UserDetailsService {
 
     String confirmSignUp(SignUpDTO signUpDTO);
 
-    Map<String, String> login(User user);
+    LoginResponse login(User user);
 
     String getNewAccessToken(HttpServletRequest request);
 

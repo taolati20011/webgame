@@ -277,7 +277,7 @@ public class UserServiceImpl implements UserService {
     private final String JWT_SECRET = "webgame";
     @Override
     @Transactional
-    public Map<String, String> login(User user) {
+    public LoginResponse login(User user) {
         Date now = new Date();
         String access_token = Jwts.builder()
                 .setSubject(user.getUsername())
@@ -291,10 +291,10 @@ public class UserServiceImpl implements UserService {
                 .setExpiration(new Date(now.getTime() + 604800000L))
                 .signWith(SignatureAlgorithm.HS512, JWT_SECRET)
                 .compact();
-        Map<String, String> token = new HashMap<String, String>();
-        token.put("username", user.getUsername());
-        token.put("access token", access_token);
-        token.put("refresh token", refresh_token);
+        LoginResponse token = new LoginResponse();
+        token.username = user.getUsername();
+        token.accessToken = access_token;
+        token.refreshToken = refresh_token;
         return token;
     }
 

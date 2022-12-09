@@ -106,29 +106,29 @@ public class UserController {
     @Autowired
     private HttpSession session;
 
-    @PostMapping("/login")
-    public ResponseEntity<String> authentication(@RequestBody LoginRequest loginRequest) throws BadCredentialsException {
-        try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            loginRequest.getUsername(),
-                            loginRequest.getPassword()
-                    )
-            );
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            User user = (User) authentication.getPrincipal();
-            if (user != null) {
-                session.setAttribute("user", user.getUserId());
-                return ResponseEntity.ok("Login Successful!");
-            }
-        }catch (BadCredentialsException ex){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("The Username or Password is Incorrect");
-        }
-        return null;
-    }
+//    @PostMapping("/login")
+//    public ResponseEntity<String> authentication(@RequestBody LoginRequest loginRequest) throws BadCredentialsException {
+//        try {
+//            Authentication authentication = authenticationManager.authenticate(
+//                    new UsernamePasswordAuthenticationToken(
+//                            loginRequest.getUsername(),
+//                            loginRequest.getPassword()
+//                    )
+//            );
+//            SecurityContextHolder.getContext().setAuthentication(authentication);
+//            User user = (User) authentication.getPrincipal();
+//            if (user != null) {
+//                session.setAttribute("user", user.getUserId());
+//                return ResponseEntity.ok("Login Successful!");
+//            }
+//        }catch (BadCredentialsException ex){
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("The Username or Password is Incorrect");
+//        }
+//        return null;
+//    }
 
-    @PostMapping("/signin")
-    public ResponseEntity<Map<String,String>> getToken(@RequestBody LoginRequest loginRequest) {
+    @PostMapping("/login")
+    public ResponseEntity<?> getToken(@RequestBody LoginRequest loginRequest) {
         try {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -141,8 +141,7 @@ public class UserController {
             return ResponseEntity.ok(userService.login(user));
         }catch (BadCredentialsException e) {
             Map<String,String> map = new HashMap<String,String>();
-            map.put("error","The Username or Password is Incorrect");
-            return ResponseEntity.ok(map);
+            return new ResponseEntity<>("The Username or Password is Incorrect", HttpStatus.BAD_REQUEST);
         }
     }
 
