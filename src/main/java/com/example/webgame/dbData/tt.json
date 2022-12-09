@@ -1,0 +1,42 @@
+[
+	{
+		"game_id" : 1,
+		"game_description" : "Quản trò vẽ sẵn các vòng tròn nhỏ trên đất,số lượng vòng tròn ít hơn số người chơi 1. Khi chơi các bạn nắm áo tạo thành một hàng đi quanh các vùng tròn và cùng đọc “dung dăng dung dẻ dắt trẻ đi chơi,đi đến cổng trời gặp cậu gặp mợ,cho cháu về quê, cho dê đi học,cho cóc ở nhà cho gà bới bếp,ngồi xẹp xuống đây” khi đọc hết chữ đây các bạn chơi nhanh chóng tìm một vòng tròn và ngồi xẹp xuống.sẽ có một bạn không có vòng tròn để ngồi tiếp tục xoá vòng tròn và chơi như trên,lại sẽ có 1 bạn không có,trò chơi tiếp tục khi chỉ còn 2 người. Hai bạn ngồi cùng 1 vòng bạn nào ngồi xuống dưới trước là thắng",
+		"game_name" : "Dung dăng dung dẻ",
+		"game_type" : "test4",
+		"release_date" : null,
+		"release_location" : "test4"
+	},
+	{
+		"game_id" : 2,
+		"game_description" : "Vẽ một hình chữ nhật được chia đôi theo chiều dài và ngăn thành 5 hàng dọc cách khoảng đều nhau, ta có được 10 ô vuông nhỏ. Hai đầu hình chữ nhật được vẽ thành 2 hình vòng cung, đó là 2 ô quan lớn đặc trưng cho mỗi bên, đặt vào đó một viên sỏi lớn có hình thể và màu sắc khác nhau để dễ phân biệt hai bên, mỗi ô vuông được đặt 5 viên sỏi nhỏ, mỗi bên có 5 ô.Hai người hai bên, người thứ nhất đi quan với nắm sỏi trong ô vuông nhỏ tùy vào người chơi chọn ô, sỏi được rãi đều chung quanh từng viên một trong những ô vuông cả phần của ô quan lớn, khi đến hòn sỏi cuối cùng ta vẫn bắt lấy ô bên cạnh và cứ thế tiếp tục đi quan (bỏ những viên sỏi nhỏ vào từng ô liên tục). Cho đến lúc nào viên sỏi cuối cùng được dừng cách khoảng là một ô trống, như thế là ta chặp ô trống bắt lấy phần sỏi trong ô bên cạnh để nhặt ra ngoài. Vậy là những viên sỏi đó đã thuộc về người chơi, và người đối diện mới được bắt đầu.Đến lượt đối phương đi quan cũng như người đầu tiên, cả hai thay phiên nhau đi quan cho đến khi nào nhặt được phần ô quan lớn và lấy được hết phần của đối phương. Như thế người đối diện đã thua hết quan. Hết quan tàn dân, thu quân kéo về. Hết ván, bày lại như cũ, ai thiếu phải vay của bên kia. Tính thắng thua theo nợ các viên sỏi.",
+		"game_name" : "Ô ăn quan",
+		"game_type" : "test4",
+		"release_date" : null,
+		"release_location" : "test4"
+	},
+	{
+		"game_id" : 3,
+		"game_description" : "Trò chơi gồm từ 7 đến 10 người. Tất cả đứng thành vòng tròn, tay nắm tay, giơ cao lên qua đầu. Rồi bắt đầu hát. Mèo đuổi chuột Mời bạn ra đây Tay nắm chặt tay Đứng thành vòng rộng Chuột luồn lỗ hổng Mèo chạy đằng sau Thế rồi chú chuột lại đóng vai mèo Co cẳng chạy theo, bác mèo hóa chuột Một người được chọn làm mèo và một người được chọn làm chuột. Hai người này đứng vào giữa vòng tròn, quay lưng vào nhau. Khi mọi người hát đến câu cuối thì chuột bắt đầu chạy, mèo phải chạy đằng sau. Tuy nhiên mèo phải chạy đúng chỗ chuột đã chạy. Mèo thắng khi mèo bắt được chuột. Rồi hai người đổi vai trò mèo chuột cho nhau. Trò chơi lại được tiếp tục.",
+		"game_name" : "Mèo đuổi chuột - đuổi bắt",
+		"game_type" : "test4",
+		"release_date" : null,
+		"release_location" : "test4"
+	},
+	{
+		"game_id" : 4,
+		"game_description" : "Một người đứng ra làm thầy thuốc, những người còn lại sắp hàng một, tay người sau nắm vạt áo người trước hoặc đặt trên vai của người phía trước. Sau đó tất cả bắt đầu đi lượn qua lượn lại như con rắn, vừa đi vừa hát: ........",
+		"game_name" : "Rồng rắn lên mây - đuổi bắt",
+		"game_type" : "test4",
+		"release_date" : null,
+		"release_location" : "test4"
+	},
+	{
+		"game_id" : 5,
+		"game_description" : "Hai người chơi oẳn tù tì, búa ăn kéo, kéo ăn lá, lá ăn búa.",
+		"game_name" : "Oẳn tù tì",
+		"game_type" : "test4",
+		"release_date" : null,
+		"release_location" : "test4"
+	}
+]

@@ -1,0 +1,22 @@
+[
+	{
+		"type_id" : 1,
+		"type_name" : "Tình yêu"
+	},
+	{
+		"type_id" : 2,
+		"type_name" : "Phong tục"
+	},
+	{
+		"type_id" : 3,
+		"type_name" : "Chiến trận"
+	},
+	{
+		"type_id" : 4,
+		"type_name" : "Trí tuệ"
+	},
+	{
+		"type_id" : 5,
+		"type_name" : "Nghề nghiệp"
+	}
+]
