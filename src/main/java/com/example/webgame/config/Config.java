@@ -59,6 +59,7 @@ public class Config {
                 .antMatchers("/api/user/authenticate").permitAll()
                 .antMatchers("/api/user/login").permitAll()
                 .antMatchers("/login*").permitAll()
+                .antMatchers("/api/type/**").permitAll()
 //                .antMatchers("/api/user/view-all").permitAll()
 //                .antMatchers("/api/game/get-detail/*").permitAll()
                 .antMatchers(
