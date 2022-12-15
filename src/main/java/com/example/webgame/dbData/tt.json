@@ -1,18 +1,138 @@
 [
 	{
 		"game_id" : 1,
-		"game_description" : "Game mo ta 1 2 3",
-		"game_name" : "Game Test",
+		"game_description" : "Quản trò vẽ sẵn các vòng tròn nhỏ trên đất,số lượng vòng tròn ít hơn số người chơi 1. Khi chơi các bạn nắm áo tạo thành một hàng đi quanh các vùng tròn và cùng đọc “dung dăng dung dẻ dắt trẻ đi chơi,đi đến cổng trời gặp cậu gặp mợ,cho cháu về quê, cho dê đi học, cho cóc ở nhà cho gà bới bếp,ngồi xẹp xuống đây” khi đọc hết chữ đây các bạn chơi nhanh chóng tìm một vòng tròn và ngồi xẹp xuống.sẽ có một bạn không có vòng tròn để ngồi tiếp tục xoá vòng tròn và chơi như trên,lại sẽ có 1 bạn không có,trò chơi tiếp tục khi chỉ còn 2 người. Hai bạn ngồi cùng 1 vòng bạn nào ngồi xuống dưới trước là thắng ",
+		"game_name" : "Dung dăng dung dẻ",
+		"release_date" : null,
+		"release_location" : null,
+		"type_id" : 4
+	},
+	{
+		"game_id" : 2,
+		"game_description" : "Vẽ một hình chữ nhật được chia đôi theo chiều dài và ngăn thành 5 hàng dọc cách khoảng đều nhau, ta có được 10 ô vuông nhỏ. Hai đầu hình chữ nhật được vẽ thành 2 hình vòng cung, đó là 2 ô quan lớn đặc trưng cho mỗi bên, đặt vào đó một viên sỏi lớn có hình thể và màu sắc khác nhau để dễ phân biệt hai bên, mỗi ô vuông được đặt 5 viên sỏi nhỏ, mỗi bên có 5 ô. Hai người hai bên, người thứ nhất đi quan với nắm sỏi trong ô vuông nhỏ tùy vào người chơi chọn ô, sỏi được rãi đều chung quanh từng viên một trong những ô vuông cả phần của ô quan lớn, khi đến hòn sỏi cuối cùng ta vẫn bắt lấy ô bên cạnh và cứ thế tiếp tục đi quan (bỏ những viên sỏi nhỏ vào từng ô liên tục). Cho đến lúc nào viên sỏi cuối cùng được dừng cách khoảng là một ô trống, như thế là ta chặp ô trống bắt lấy phần sỏi trong ô bên cạnh để nhặt ra ngoài. Vậy là những viên sỏi đó đã thuộc về người chơi, và người đối diện mới được bắt đầu. Đến lượt đối phương đi quan cũng như người đầu tiên, cả hai thay phiên nhau đi quan cho đến khi nào nhặt được phần ô quan lớn và lấy được hết phần của đối phương. Như thế người đối diện đã thua hết quan. Hết quan tàn dân, thu quân kéo về. Hết ván, bày lại như cũ, ai thiếu phải vay của bên kia. Tính thắng thua theo nợ các viên sỏi. ",
+		"game_name" : "Ô ăn quan",
 		"release_date" : null,
 		"release_location" : null,
 		"type_id" : 1
 	},
 	{
-		"game_id" : 2,
-		"game_description" : "Game mo ta 2 3 4",
-		"game_name" : "Game Test 2",
+		"game_id" : 3,
+		"game_description" : "Trò chơi lật bài là là một trò chơi bài trong đó tất cả các quân bài được úp xuống một mặt phẳng và hai quân bài được lật ngửa trong mỗi lượt. Mục tiêu của trò chơi là lật các cặp thẻ giống nhau. Trước khi chơi, cần chuẩn bị một bộ bài, bất kỳ bộ bài chơi nào cũng có thể sử dụng được. Mục tiêu chiến thắng: Trò chơi sẽ kết thúc khi cặp bài cuối cùng được chọn. Người chiến thắng là người có nhiều cặp nhất. Có thể hòa khi số cặp của người chơi bằng nhau. Theo lượt, mỗi người chơi chọn hai lá bài và lật chúng lên. Nếu chúng giống nhau thì người chơi đó sẽ thắng cặp và tiếp tục như thế. Nếu chúng khác nhau, chúng sẽ được úp xuống một lần nữa và chuyển lượt cho người kế tiếp.",
+		"game_name" : "Lật bài",
 		"release_date" : null,
 		"release_location" : null,
-		"type_id" : 2
+		"type_id" : 1
+	},
+	{
+		"game_id" : 4,
+		"game_description" : "Quản trò vẽ sẵn các vòng tròn nhỏ trên đất,số lượng vòng tròn ít hơn số người chơi 1. Khi chơi các bạn nắm áo tạo thành một hàng đi quanh các vùng tròn và cùng đọc “dung dăng dung dẻ dắt trẻ đi chơi,đi đến cổng trời gặp cậu gặp mợ,cho cháu về quê, cho dê đi học,cho cóc ở nhà cho gà bới bếp,ngồi xẹp xuống đây” khi đọc hết chữ đây các bạn chơi nhanh chóng tìm một vòng tròn và ngồi xẹp xuống.sẽ có một bạn không có vòng tròn để ngồi tiếp tục xoá vòng tròn và chơi như trên,lại sẽ có 1 bạn không có,trò chơi tiếp tục khi chỉ còn 2 người. Hai bạn ngồi cùng 1 vòng bạn nào ngồi xuống dưới trước là thắng ",
+		"game_name" : "Cờ toán Việt Nam",
+		"release_date" : null,
+		"release_location" : null,
+		"type_id" : 1
+	},
+	{
+		"game_id" : 5,
+		"game_description" : "Cờ ca-rô là một trò chơi dân gian khá phổ biến ở Việt Nam. Đây là một trò chơi trí tuệ lý tưởng. Trước khi chơi, cần chuẩn bị bàn cờ và quân cờ. Bạn cần có 1 bàn cờ gồm nhiều ô vuông, bàn cờ càng to càng tốt. Quân cờ có 2 lựa chọn được ký hiệu là X và O. Mục tiêu chiến thắng: Ván cờ sẽ kết thúc khi 1 bên nối được 5 quân liên tiếp nhau hoặc khi hết thời gian hoặc ô vuông, lúc đó thì ván cờ sẽ xử hòa. Di chuyển: các quân cờ caro bạn phải đi vào trong ô vuông chứ không phải các giao điểm đường kẻ. Người cầm quân O sẽ đi trước, người cầm quân X đi sau. Quân cờ có thể đánh ở mọi ô vuông trống trên bàn cờ.",
+		"game_name" : "Tíc tắc toe",
+		"release_date" : null,
+		"release_location" : null,
+		"type_id" : 1
+	},
+	{
+		"game_id" : 6,
+		"game_description" : "Nhiều người chơi. Những người tham gia sẽ theo tuần tự bắn bi của mình tới khoảng một vạch cho phép, người nào gần vạch nhất mà không đi quá vạch sẽ được lượt đi trước. Sau khi tất cả mọi người hoàn thành lượt đi đầu, người đạt vị trí đầu tiên sẽ bắn vào bi của các người chơi khác. Nếu bắn trúng thì được tiếp tục, nếu không trúng thì đến lượt người tiếp theo. ",
+		"game_name" : "Bắn Bi",
+		"release_date" : null,
+		"release_location" : null,
+		"type_id" : 1
+	},
+	{
+		"game_id" : 7,
+		"game_description" : "Một người xung phong để mọi người bịt mắt lại bằng một chiếc khăn để không nhìn thấy, những người còn lại đứng thành vòng tròn quanh người bị bịt mắt. Mọi người chạy xung quanh người bị bịt mắt đến khi nào người đó hô “bắt đầu” hoặc “đứng lại” thì tất cả mọi người phải đứng lại, không được di chuyển nữa. Lúc này người bị bịt mắt bắt đầu lần đi xung quanh để bắt được ai đó, mọi người thì cố tránh để không bị bắt và tạo ra nhiều tiếng động để đánh lạc hướng. Đến khi ai đó bị bắt và người bị bịt mắt đoán đúng tên thì người đó sẽ phải ra “bắt dê”, nếu đoán sai lại bị bịt mắt lại và làm tiếp. ",
+		"game_name" : "Bịt mắt bắt dê",
+		"release_date" : null,
+		"release_location" : null,
+		"type_id" : 1
+	},
+	{
+		"game_id" : 8,
+		"game_description" : " Chọn một người chơi làm “cá sấu” (“oẳn tù tỳ” để chọn ra). Các người chơi đứng hai bên bờ. Bắt đầu chơi: Khi có hiệu lệnh, người chơi làm “cá sấu” đi lại giữa hai vạch tìm bắt người chơi nào ở dưới nước hoặc thò chân xuống nước (nhảy ra khỏi vạch hoặc thò chân xuống vạch). Để sinh động, người qua sông, đứng trên bờ trọc tức “cá sấu”. “Cá sấu” chạy ngược xuôi để cố gắng bắt được các người chơi, người chơi nào xuống sông mà nhảy lên bờ không kịp bị “cá sấu” bắt được phải thay thế làm “cá sấu”.Luật chơi: Người chơi qua sông thì không được nửa chừng quay lại, dù vòng vèo lên xuống nhưng cứ phải sang bờ bên kia mới được. “Cá sấu” không được dùng tay kéo người trên bờ xuống sông nếu người đó không thò chân xuống sông hoặc nhảy xuống sông.",
+		"game_name" : "Cá sấu lên bờ",
+		"release_date" : null,
+		"release_location" : null,
+		"type_id" : 1
+	},
+	{
+		"game_id" : 9,
+		"game_description" : "Chia làm hai phe, mỗi phe cùng dùng sức mạnh để kéo cho được bên kia ngã về phía mình. có dây thừng buộc dài hay dây song, dây tre hoặc cây tre, thường dài khoảng 20m căng đều ra hai phía, có vật làm mốc ở giữa, hai bên xúm nhau nắm lấy dây thừng để kéo. Trọng tài ra hiệu lệnh. Hai bên ra sức kéo, sao cho vật mốc kéo về bên mình là thắng.",
+		"game_name" : "Kéo co",
+		"release_date" : null,
+		"release_location" : null,
+		"type_id" : 1
+	},
+	{
+		"game_id" : 10,
+		"game_description" : "Hai người ngồi đối diện nhau, cầm chặt tay nhau. Vừa hát vừa kéo tay và đẩy qua đẩy trông như đang cưa một khúc gỗ ở giữa hai người. Mỗi lần hát một từ thì lại đẩy hoặc kéo về một lần. Bài hát có thể là: Kéo cưa lừa xẻ Ông thợ nào khỏe Về ăn cơm vua Ông thợ nào thua Về bú tí mẹ ",
+		"game_name" : "Kéo cưa lừa xẻ",
+		"release_date" : null,
+		"release_location" : null,
+		"type_id" : 1
+	},
+	{
+		"game_id" : 11,
+		"game_description" : "Trò chơi gồm từ 7 đến 10 người. Tất cả đứng thành vòng tròn, tay nắm tay, giơ cao lên qua đầu. Rồi bắt đầu hát. Mèo đuổi chuột Mời bạn ra đây Tay nắm chặt tay Đứng thành vòng rộng Chuột luồn lỗ hổng Mèo chạy đằng sau Thế rồi chú chuột lại đóng vai mèo Co cẳng chạy theo, bác mèo hóa chuột Một người được chọn làm mèo và một người được chọn làm chuột. Hai người này đứng vào giữa vòng tròn, quay lưng vào nhau. Khi mọi người hát đến câu cuối thì chuột bắt đầu chạy, mèo phải chạy đằng sau. Tuy nhiên mèo phải chạy đúng chỗ chuột đã chạy. Mèo thắng khi mèo bắt được chuột. Rồi hai người đổi vai trò mèo chuột cho nhau. Trò chơi lại được tiếp tục. ",
+		"game_name" : "Mèo đuổi chuột",
+		"release_date" : null,
+		"release_location" : null,
+		"type_id" : 1
+	},
+	{
+		"game_id" : 12,
+		"game_description" : "Trò chơi này sẽ oẳn tù tì để xác định người bị phạt. Người bị phạt đứng úp mặt vào tường. Những người còn lại đứng cách xa tường khoảng trên 3m trên một lằn mức. Trong khi người bị phạt đập tay vào tường 3 cái đồng thời đọc to “Một – hai – ba”, những người ở phía sau bước lên thật nhanh một hoặc hai bước. Sau tiếng “ba”, người bị phạt quay lại, nếu thấy ai đang bước thì người đó bị phạt tạm ngừng chơi và lên đứng sát tường. Đến lúc có người nào đó đã bước lên được sát đằng sau người bị phạt (cách khoảng 0.5m) sẽ đập vào lưng người bị phạt, tất cả người chơi (kể cả người đang bị tạm ngưng chơi) sẽ chạy ùa về mức ban đầu. Người bị phạt sẽ rượt theo, chạm tay trúng ai thì người đó sẽ bị phạt và trò chơi lại bắt đầu.",
+		"game_name" : "Một hai ba",
+		"release_date" : null,
+		"release_location" : null,
+		"type_id" : 1
+	},
+	{
+		"game_id" : 13,
+		"game_description" : "Có hai kiểu nhảy dây là nhảy một người hoặc nhảy nhiều người. Dù nhảy cá nhân hay tập thể thì người chơi cũng không được chạm vào dây. Day phải được quay liên tục theo 1 chiều cố định không được quá nhanh hoặc quá chậm ",
+		"game_name" : "Nhảy dây",
+		"release_date" : null,
+		"release_location" : null,
+		"type_id" : 1
+	},
+	{
+		"game_id" : 14,
+		"game_description" : " Vẽ ô nhảy lò cò trên sàn. Nên vẽ các hình vuông đủ to để nhảy được một chân vào và ném gạch không dễ bị bắn ra ngoài. Người chơi đầu tiên sẽ ném một miếng gạch mỏng hoặc hòn đá phẳng vào những ô hình vuông, bắt đầu từ ô số 1. Vật được ném phải nằm gọn trong ô và không được chạm vào đường viền. Nếu trẻ ném trượt sẽ tới lượt người chơi tiếp theo. Nếu trẻ ném trúng, sẽ nhảy vào các ô còn lại, phải bỏ qua ô số mình vừa ném và nhảy vào các ô tiếp theo. Lúc nhảy lượt về nhớ nhặt miếng gạch của mình. Khi nhảy đến sát ô vừa ném gạch trúng, trẻ phải cúi người xuống (vẫn đứng một chân) và nhặt miếng gạch lên. Nhảy qua ô đó đến ô tiếp theo và kết thúc vòng. Tiếp đến trẻ sẽ ném gạch vào ô số 2 và cứ đi như thế đến ô cuối cùng thì chiến thắng. ",
+		"game_name" : "Nhảy lò cò",
+		"release_date" : null,
+		"release_location" : null,
+		"type_id" : 1
+	},
+	{
+		"game_id" : 15,
+		"game_description" : "Hai người chơi oẳn tù tì, búa ăn kéo, kéo ăn lá, lá ăn búa.",
+		"game_name" : "Oẳn tù tì",
+		"release_date" : null,
+		"release_location" : null,
+		"type_id" : 1
+	},
+	{
+		"game_id" : 16,
+		"game_description" : "Một người đứng ra làm thầy thuốc, những người còn lại sắp hàng một, tay người sau nắm vạt áo người trước hoặc đặt trên vai của người phía trước. Sau đó tất cả bắt đầu đi lượn qua lượn lại như con rắn, vừa đi vừa hát: Rồng rắn lên mây Có cây lúc lắc Hỏi thăm thầy thuốc Có nhà hay không? Người đóng vai thầy thuốc trả lời: - Thấy thuốc đi chơi ! (hay đi chợ, đi câu cá , đi vắng nhà... tùy ý mà chế ra). Đoàn người lại đi và hát tiếp cho đến khi thầy thuốc trả lời: - Có ! Và bắt đầu đối thoại như sau : Thầy thuốc hỏi: - Rồng rắn đi đâu? Người đứng làm đầu của rồng rắn trả lời: - Rồng rắn đi lấy thuốc để chữa bệnh cho con. - Con lên mấy ? - Con lên một - Thuốc chẳng hay - Con lên hai. - Thuốc chẳng hay. .................................................. .... Cứ thế cho đến khi: - Con lên mười. - Thuốc hay vậy. Kế đó, thì thầy thuốc đòi hỏi: + Xin khúc đầu. - Những xương cùng xẩu. + Xin khúc giữa. - Những máu cùng me. + Xin khúc đuôi. - Tha hồ mà đuổi. Lúc đó thầy thuốc phải tìm cách làm sao mà bắt cho được người cuối cùng trong hàng. Ngược lại thì người đứng đầu phải dang tay chạy, cố ngăn cản không cho người thầy thuốc bắt được cái đuôi của mình, trong lúc đó cái đuôi phải chạy và tìm cách né tránh thầy thuốc. Nếu thầy thuốc bắt được người cuối cùng thì người đó phải ra thầy làm thầy thuốc. Nếu đang chơi giằng co giữa chừng, mà rồng rắn bị đứt ngang thì tạm ngừng để nối lại và tiếp tục trò chơi. ",
+		"game_name" : "Rồng rắn lên mây",
+		"release_date" : null,
+		"release_location" : null,
+		"type_id" : 1
+	},
+	{
+		"game_id" : 17,
+		"game_description" : "Nhiều người chơi, một người sẽ làm người đi tìm, những người còn lại đi bắt. Người đi tìm bắt đầu đếm từ 1 đến 10, những thành viên còn lại sẽ đi trốn. Sau khi đếm hết 10, người đi tìm bắt đầu đi tìm, phát hiện ai thì quay về nơi ban đầu hô “Binh”, trong thời gian đó, những người đi trốn khác có thể chạy về nơi ban đầu để “Binh” và thắng cuộc.",
+		"game_name" : "Trốn tìm",
+		"release_date" : null,
+		"release_location" : null,
+		"type_id" : 1
 	}
 ]

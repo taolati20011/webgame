@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,6 +20,7 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer gameId;
     public String gameName;
+    @Column(name = "game_description", nullable = false, length = 2000)
     public String gameDescription;
     public LocalDateTime releaseDate;
     public String releaseLocation;

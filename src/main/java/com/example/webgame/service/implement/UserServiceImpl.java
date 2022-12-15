@@ -282,7 +282,7 @@ public class UserServiceImpl implements UserService {
         String access_token = Jwts.builder()
                 .setSubject(user.getUsername())
                 .setIssuedAt(now)
-                .setExpiration(new Date(now.getTime() + 600000L))
+                .setExpiration(new Date(now.getTime() + 604800000L))
                 .signWith(SignatureAlgorithm.HS512, JWT_SECRET)
                 .compact();
         String refresh_token = Jwts.builder()

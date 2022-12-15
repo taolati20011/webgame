@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @GetMapping("/view-all")
-//    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     public ResponseEntity<List<UserListDTO>> getAllUser(@RequestParam(defaultValue = "0") Integer pageNo,
                                                         @RequestParam Integer pageSize) {
         return ResponseEntity.ok(userService.getAllUser(pageNo, pageSize));
