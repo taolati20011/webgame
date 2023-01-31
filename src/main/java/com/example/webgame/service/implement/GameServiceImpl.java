@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,13 +42,27 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public void addGameDetails(AddGameDTO addGameDTO) {
+    public String addGameDetails(AddGameDTO addGameDTO) {
+        if (addGameDTO.gameName.length() == 0) {
+            return "Please fill game name!";
+        }
+        if (addGameDTO.gameDescription.length() == 0
+                || addGameDTO.gameDescription == null) {
+            return "Please fill game description!";
+        }
+        if (addGameDTO.typeId == null) {
+            return "Please select game type";
+        }
         Game game = new Game();
-        game.setGameDescription(addGameDTO.gameDescription);
+        Optional<Integer> res = gameRepository.findGameByGameName(addGameDTO.gameName);
+        if (res.isPresent()) {
+            return "Game " + addGameDTO.gameName + " already exist!";
+        }
         game.setGameName(addGameDTO.gameName);
         game.setGameDescription(addGameDTO.gameDescription);
         game.setType(gameTypeRepository.findById(addGameDTO.typeId).get());
         gameRepository.save(game);
+        return "Add game successful";
     }
 
     @Override

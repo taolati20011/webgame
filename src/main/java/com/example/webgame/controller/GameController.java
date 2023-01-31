@@ -6,6 +6,7 @@ import com.example.webgame.response.GameDetailResponse;
 import com.example.webgame.service.implement.GameServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -38,8 +39,8 @@ public class GameController {
     }
 
     @PostMapping("/add")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> addGameDetail(@RequestBody AddGameDTO gameDetail) {
-        gameService.addGameDetails(gameDetail);
-        return ResponseEntity.ok("Add game successful");
+        return ResponseEntity.ok(gameService.addGameDetails(gameDetail));
     }
 }

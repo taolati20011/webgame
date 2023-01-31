@@ -11,7 +11,7 @@ import java.util.List;
 public interface GameService {
     public GameDetailResponse getGameDetails(Integer id);
 
-    public void addGameDetails(AddGameDTO game);
+    public String addGameDetails(AddGameDTO game);
 
     public List<GameDetailResponse> findAll();
 }
