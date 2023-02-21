@@ -14,4 +14,6 @@ public interface GameService {
     public String addGameDetails(AddGameDTO game);
 
     public List<GameDetailResponse> findAll();
+
+    public List<GameDetailResponse> findGamesByFilter(String words);
 }

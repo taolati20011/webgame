@@ -10,6 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -26,6 +27,11 @@ public class GameController {
     @GetMapping("/get-all")
     public Collection<GameDetailResponse> games() {
         return gameService.findAll();
+    }
+
+    @GetMapping("/get-all-by-filter")
+    public ResponseEntity<List<GameDetailResponse>> games(@RequestParam (defaultValue = "") String words) {
+        return ResponseEntity.ok(gameService.findGamesByFilter(words));
     }
 
     @GetMapping("/get-detail")

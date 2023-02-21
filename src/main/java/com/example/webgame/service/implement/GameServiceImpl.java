@@ -7,6 +7,7 @@ import com.example.webgame.repository.GameRepository;
 import com.example.webgame.repository.GameTypeRepository;
 import com.example.webgame.response.GameDetailResponse;
 import com.example.webgame.service.GameService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -78,5 +79,25 @@ public class GameServiceImpl implements GameService {
             gameDetailResponse.releaseLocation = data.releaseLocation;
             return gameDetailResponse;
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<GameDetailResponse> findGamesByFilter(String words) {
+        List<GameDetailResponse> games = gameRepository.findByFilter(words)
+                .stream()
+                .map(data -> {
+                    GameDetailResponse gameDetailResponse = new GameDetailResponse();
+                    gameDetailResponse.gameType = gameTypeRepository.findById(Long.valueOf(data.gameId)).get().getTypeName();
+                    gameDetailResponse.gameName = data.gameName;
+                    gameDetailResponse.gameDescription = data.gameDescription;
+                    gameDetailResponse.gameId = data.gameId;
+                    gameDetailResponse.releaseDate = data.releaseDate;
+                    gameDetailResponse.releaseLocation = data.releaseLocation;
+                    return gameDetailResponse;
+                }).collect(Collectors.toList());
+        if (!games.isEmpty()) {
+            return games;
+        }
+        throw new NotFoundException("Game not found with : " + words);
     }
 }
