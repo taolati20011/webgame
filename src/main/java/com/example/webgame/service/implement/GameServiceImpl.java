@@ -87,7 +87,8 @@ public class GameServiceImpl implements GameService {
                 .stream()
                 .map(data -> {
                     GameDetailResponse gameDetailResponse = new GameDetailResponse();
-                    gameDetailResponse.gameType = gameTypeRepository.findById(Long.valueOf(data.gameId)).get().getTypeName();
+                    String gameType = gameTypeRepository.findById(data.getType().getTypeId()).get().getTypeName();
+                    gameDetailResponse.gameType = gameType;
                     gameDetailResponse.gameName = data.gameName;
                     gameDetailResponse.gameDescription = data.gameDescription;
                     gameDetailResponse.gameId = data.gameId;
