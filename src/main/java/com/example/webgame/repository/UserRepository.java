@@ -1,5 +1,6 @@
 package com.example.webgame.repository;
 
+import com.example.webgame.dto.UserListDTO;
 import com.example.webgame.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -61,4 +62,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
             where u.userId = ?1
             """)
     Integer countId(Long userId);
+
+    @Query("""
+            select u from User u
+            where u.username like %?1% or u.userFullname like %?1%
+            """)
+    List<User> findByFilter(String words);
 }

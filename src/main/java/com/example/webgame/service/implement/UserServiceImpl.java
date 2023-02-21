@@ -96,6 +96,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserListDTO> findAllByFilter(String words) {
+        List<UserListDTO> users = userRepository.findByFilter(words).stream()
+                .map(data -> {
+                    UserListDTO userListDTO = new UserListDTO();
+                    BeanUtils.copyProperties(data, userListDTO);
+                    return userListDTO;
+                }).collect(Collectors.toList());
+        if (!users.isEmpty()) {
+            return users;
+        }
+        throw new NotFoundException("User not found with : " + words);
+    }
+
+    @Override
     @Transactional
     public String createUser(UserDTO userDTO) {
         if (userRepository.countEmail(userDTO.getUserEmail()) >= 1) {

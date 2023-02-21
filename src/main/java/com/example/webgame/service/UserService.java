@@ -14,6 +14,8 @@ public interface UserService extends UserDetailsService {
 
     List<UserListDTO> findAllByFullName(UserListDTO userListDTO);
 
+    List<UserListDTO> findAllByFilter(String words);
+
     String createUser(UserDTO userDTO);
 
     void editUser(UserEditDTO userEditDTO, Long userId);

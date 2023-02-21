@@ -47,6 +47,12 @@ public class UserController {
         return ResponseEntity.ok(userService.findAllByFullName(userListDTO));
     }
 
+    @GetMapping("/find-all-by-filter")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    public ResponseEntity<List<UserListDTO>> findAllByFilter(@RequestParam(defaultValue = "") String words) {
+        return ResponseEntity.ok(userService.findAllByFilter(words));
+    }
+
     @PostMapping("/signup")
     //@PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
     public String createUser(
