@@ -7,7 +7,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table
@@ -22,7 +24,7 @@ public class Game {
     public String gameName;
     @Column(name = "game_description", nullable = false, length = 2000)
     public String gameDescription;
-    public LocalDateTime releaseDate;
+    public LocalDate releaseDate;
     public String releaseLocation;
     @ManyToOne
     @JoinColumn(name="typeId", nullable = false)

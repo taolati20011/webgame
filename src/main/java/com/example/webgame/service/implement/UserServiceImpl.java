@@ -24,6 +24,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -96,8 +97,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserListDTO> findAllByFilter(String words) {
-        List<UserListDTO> users = userRepository.findByFilter(words).stream()
+    public List<UserListDTO> findAllByFilter(String words, Integer pageNo, Integer pageSize) {
+        Pageable paging = PageRequest.of(pageNo, pageSize);
+        List<UserListDTO> users = userRepository.findByFilter(words, paging).stream()
                 .map(data -> {
                     UserListDTO userListDTO = new UserListDTO();
                     BeanUtils.copyProperties(data, userListDTO);
@@ -164,14 +166,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void editUser(UserEditDTO userEditDTO, Long userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User does not exist"));
-        user.setUserFullname(userEditDTO.getUserFullname());
-        user.setUserAddress(userEditDTO.getUserAddress());
-        user.setUserEmail(userEditDTO.getUserEmail());
-        user.setUserGender(userEditDTO.getUserGender());
-        user.setUserPhone(userEditDTO.getUserPhone());
-        user.setUsername(userEditDTO.getUsername());
+    public void editUser(Long userId, UserDTO userDTO) {
+        Set<Role> roleDefault = new HashSet<>();
+        roleDefault.add(roleRepository.findById(2L).orElse(null));
+        userDTO.setUserId(userId);
+        userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        userDTO.setRoles(roleDefault);
+        userDTO.setCheck(false);
+        User user = new User();
+        BeanUtils.copyProperties(userDTO, user);
         userRepository.save(user);
     }
 
@@ -215,6 +218,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public boolean deleteUserById(Long userId) {
         if (userRepository.countId(userId) > 0) {
+            userRepository.deleteRoleUserByUserId(userId);
             userRepository.deleteUserById(userId);
             return true;
         }
@@ -340,5 +344,16 @@ public class UserServiceImpl implements UserService {
                 .getBody();
 
         return claims.getSubject();
+    }
+
+    @Override
+    public UserDTO getUserInfoById(Long id) {
+        UserDTO userDTO = userRepository.getUserInfoById(id);
+        return userDTO;
+    }
+
+    @Override
+    public Integer getNumberOfUser(String words) {
+        return userRepository.countNumberOfUser(words);
     }
 }

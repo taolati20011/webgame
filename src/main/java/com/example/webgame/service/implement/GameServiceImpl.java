@@ -9,6 +9,8 @@ import com.example.webgame.response.GameDetailResponse;
 import com.example.webgame.service.GameService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -62,6 +64,8 @@ public class GameServiceImpl implements GameService {
         game.setGameName(addGameDTO.gameName);
         game.setGameDescription(addGameDTO.gameDescription);
         game.setType(gameTypeRepository.findById(addGameDTO.typeId).get());
+        game.setReleaseDate(addGameDTO.getReleaseDate());
+        game.setReleaseLocation(addGameDTO.getReleaseLocation());
         gameRepository.save(game);
         return "Add game successful";
     }
@@ -82,8 +86,9 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public List<GameDetailResponse> findGamesByFilter(String words) {
-        List<GameDetailResponse> games = gameRepository.findByFilter(words)
+    public List<GameDetailResponse> findGamesByFilter(String words, Integer pageNo, Integer pageSize) {
+        Pageable paging = PageRequest.of(pageNo, pageSize);
+        List<GameDetailResponse> games = gameRepository.findByFilter(words, paging)
                 .stream()
                 .map(data -> {
                     GameDetailResponse gameDetailResponse = new GameDetailResponse();
@@ -100,5 +105,45 @@ public class GameServiceImpl implements GameService {
             return games;
         }
         throw new NotFoundException("Game not found with : " + words);
+    }
+
+    @Override
+    public Integer countNumberOfGame(String words) {
+        return gameRepository.countNumberOfGame(words);
+    }
+
+    @Override
+    public boolean deleteGameById(Integer gameId) {
+        if (gameRepository.countId(gameId) > 0) {
+            gameRepository.deleteGameById(gameId);
+            return true;
+        }
+        throw new NotFoundException("User does not exist");
+    }
+
+    public String editGameDetails(Integer id, AddGameDTO addGameDTO) {
+        if (addGameDTO.gameName.length() == 0) {
+            return "Please fill game name!";
+        }
+        if (addGameDTO.gameDescription.length() == 0
+                || addGameDTO.gameDescription == null) {
+            return "Please fill game description!";
+        }
+        if (addGameDTO.typeId == null) {
+            return "Please select game type";
+        }
+        Game game = new Game();
+        Optional<Integer> res = gameRepository.findGameByGameName(addGameDTO.gameName);
+        if (res.isPresent() && res.get() != id) {
+            return "Game " + addGameDTO.gameName + " already exist!";
+        }
+        game.setGameId(id);
+        game.setGameName(addGameDTO.gameName);
+        game.setGameDescription(addGameDTO.gameDescription);
+        game.setType(gameTypeRepository.findById(addGameDTO.typeId).get());
+        game.setReleaseDate(addGameDTO.getReleaseDate());
+        game.setReleaseLocation(addGameDTO.getReleaseLocation());
+        gameRepository.save(game);
+        return "Add game successful";
     }
 }

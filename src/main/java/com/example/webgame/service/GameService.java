@@ -3,6 +3,8 @@ package com.example.webgame.service;
 import com.example.webgame.dto.AddGameDTO;
 import com.example.webgame.entity.Game;
 import com.example.webgame.response.GameDetailResponse;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,5 +17,11 @@ public interface GameService {
 
     public List<GameDetailResponse> findAll();
 
-    public List<GameDetailResponse> findGamesByFilter(String words);
+    public List<GameDetailResponse> findGamesByFilter(String words, Integer pageNo, Integer pageSize);
+
+    public Integer countNumberOfGame(String words);
+
+    boolean deleteGameById(Integer gameId);
+
+    public String editGameDetails(Integer id, AddGameDTO addGameDTO);
 }

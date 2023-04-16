@@ -13,6 +13,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
@@ -23,8 +24,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://connect-db-test.vercel.app")
 @RestController
+@Transactional
 @RequestMapping("/api/user")
 public class UserController {
     private UserServiceImpl userService;
@@ -32,6 +34,12 @@ public class UserController {
     @Autowired
     public UserController(UserServiceImpl userService) {
         this.userService = userService;
+    }
+
+    @GetMapping("/count-user")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    public Integer countNumberOfUser(@RequestParam(defaultValue = "") String words) {
+        return userService.getNumberOfUser(words);
     }
 
     @GetMapping("/view-all")
@@ -49,8 +57,10 @@ public class UserController {
 
     @GetMapping("/find-all-by-filter")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    public ResponseEntity<List<UserListDTO>> findAllByFilter(@RequestParam(defaultValue = "") String words) {
-        return ResponseEntity.ok(userService.findAllByFilter(words));
+    public ResponseEntity<List<UserListDTO>> findAllByFilter(@RequestParam(defaultValue = "") String words,
+                                                             @RequestParam(defaultValue = "0") Integer pageNo,
+                                                             @RequestParam Integer pageSize) {
+        return ResponseEntity.ok(userService.findAllByFilter(words, pageNo, pageSize));
     }
 
     @PostMapping("/signup")
@@ -61,13 +71,19 @@ public class UserController {
         return userService.createUser(userDTO);
     }
 
+    @GetMapping("/get-info-by-id/{id}")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    public UserDTO getUserInfoById(@PathVariable("id") Long id) {
+        return userService.getUserInfoById(id);
+    }
+
     @PutMapping("/edit/{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> editUser(
-            @Valid @RequestBody UserEditDTO userEditDTO,
-            @PathVariable("id") Long id
+            @PathVariable("id") Long id,
+            @RequestBody UserDTO userDTO
     ) {
-        userService.editUser(userEditDTO, id);
+        userService.editUser(id, userDTO);
         return ResponseEntity.ok("Update Successful");
     }
 

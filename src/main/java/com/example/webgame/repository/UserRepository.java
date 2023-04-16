@@ -1,11 +1,14 @@
 package com.example.webgame.repository;
 
+import com.example.webgame.dto.UserDTO;
 import com.example.webgame.dto.UserListDTO;
 import com.example.webgame.entity.User;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -67,5 +70,24 @@ public interface UserRepository extends JpaRepository<User, Long> {
             select u from User u
             where u.username like %?1% or u.userFullname like %?1%
             """)
-    List<User> findByFilter(String words);
+    List<User> findByFilter(String words, Pageable pageable);
+
+    @Query("""
+            select u from User u
+            where u.userId = ?1
+            """)
+    UserDTO getUserInfoById(Long id);
+
+    @Query("""
+            select count(u) from User u
+            where u.username like %?1% or u.userFullname like %?1%
+            """)
+    Integer countNumberOfUser(String words);
+
+    @Modifying
+    @Query(value = """
+            delete from role_user 
+            where user_id = ?1 ;
+            """, nativeQuery = true)
+    Integer deleteRoleUserByUserId(Long Id);
 }
