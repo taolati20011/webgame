@@ -199,11 +199,11 @@ public class GameServiceImpl implements GameService {
     }
 
     public List<FilesResponse> getCoverImageFile(Integer id) {
-        if (gameRepository.getCoverImageGamesByGameId(id).isEmpty()) {
+        if (gameRepository.getCoverImageGamesByGameId(id).isEmpty() && gameRepository.getMainImageGamesByGameId(id) == null) {
 //            List<FilesResponse> nullList = new ArrayList<>();
 //            nullList.add(new FilesResponse());
-            return null ;
-//            throw new NotFoundException("Game type not found");
+//            return null ;
+            throw new NotFoundException("Game image not found");
         }
 
         String typeGame = gameRepository.findById(id).get().getType().getTypeName();
@@ -223,6 +223,14 @@ public class GameServiceImpl implements GameService {
                     filesResponse.typeImage = baseImageUrl + typeUrl(filesResponse.typeGame);
                     return filesResponse;
                 }).collect(Collectors.toList());
+        while (listFileResponse.size() < 3) {
+            if (listFileResponse.size() == 0) {
+                listFileResponse.add(filesResponse1);
+            }
+            else {
+                listFileResponse.add(listFileResponse.get(listFileResponse.size() - 1));
+            }
+        }
         listFileResponse.add(filesResponse1);
         return listFileResponse;
     }

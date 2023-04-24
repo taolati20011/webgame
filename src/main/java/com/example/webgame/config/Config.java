@@ -68,7 +68,7 @@ public class Config {
                 .antMatchers("/api/type/**").permitAll()
                 .antMatchers("/api/game/get-detail/**").permitAll()
                 .antMatchers("/api/game/get-main-file").permitAll()
-                .antMatchers("/api/game/get-cover-file").permitAll()
+                .antMatchers("/api/game/get-cover-file/**").permitAll()
 //                .antMatchers("/api/user/view-all").permitAll()
 //                .antMatchers("/api/game/get-detail/*").permitAll()
                 .antMatchers(
