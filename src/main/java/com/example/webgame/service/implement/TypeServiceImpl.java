@@ -23,7 +23,7 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public String getTypeName(Long type_id) {
-        return typeRepository.findById(type_id).get().getTypeName();
+    public String getTypeName(Integer type_id) {
+        return typeRepository.findById(Long.valueOf(type_id)).get().getTypeName();
     }
 }

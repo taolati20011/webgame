@@ -3,6 +3,7 @@ package com.example.webgame.controller;
 import com.example.webgame.dto.AddGameDTO;
 import com.example.webgame.dto.UserDTO;
 import com.example.webgame.entity.Game;
+import com.example.webgame.response.FilesResponse;
 import com.example.webgame.response.GameDetailResponse;
 import com.example.webgame.service.implement.GameServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class GameController {
     }
 
     @GetMapping("/count-game")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_DEVELOPER')")
     public Integer countNumberOfGame(@RequestParam(defaultValue = "") String words) {
         return gameService.countNumberOfGame(words);
     }
@@ -56,13 +57,13 @@ public class GameController {
     }
 
     @PostMapping("/add")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_DEVELOPER')")
     public ResponseEntity<?> addGameDetail(@RequestBody AddGameDTO gameDetail) {
         return ResponseEntity.ok(gameService.addGameDetails(gameDetail));
     }
 
     @PutMapping("/edit/{id}")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_DEVELOPER')")
     public ResponseEntity<?> editGame(
             @PathVariable("id") Integer id,
             @RequestBody AddGameDTO addGameDTO
@@ -72,11 +73,23 @@ public class GameController {
     }
 
     @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_DEVELOPER')")
     public ResponseEntity<?> deleteGame(
             @PathVariable("id") Integer id
     ) {
         gameService.deleteGameById(id);
         return ResponseEntity.ok("Delete Successful");
+    }
+
+    @GetMapping("/get-main-file")
+    public List<List<FilesResponse>> getMainFileName() {
+        return gameService.getMainImageFile();
+    }
+
+    @GetMapping("/get-cover-file/{id}")
+    public List<FilesResponse> getCoverFileName(
+            @PathVariable("id") Integer id
+    ) {
+        return gameService.getCoverImageFile(id);
     }
 }

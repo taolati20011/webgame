@@ -21,5 +21,5 @@ public class AddGameDTO {
     public String gameDescription;
     public LocalDate releaseDate;
     public String releaseLocation;
-    public Long typeId;
+    public Integer typeId;
 }

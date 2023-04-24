@@ -1,18 +1,22 @@
 package com.example.webgame.service.implement;
 
 import com.example.webgame.dto.AddGameDTO;
+import com.example.webgame.dto.FileRequests;
 import com.example.webgame.entity.Game;
 import com.example.webgame.exception.NotFoundException;
 import com.example.webgame.repository.GameRepository;
 import com.example.webgame.repository.GameTypeRepository;
+import com.example.webgame.response.FilesResponse;
 import com.example.webgame.response.GameDetailResponse;
 import com.example.webgame.service.GameService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -21,6 +25,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class GameServiceImpl implements GameService {
+
+    @Value("${s3.file.images.base-url}")
+    private String baseImageUrl;
     @Autowired
     private GameRepository gameRepository;
 
@@ -36,7 +43,7 @@ public class GameServiceImpl implements GameService {
         gameDetailResponse.gameId = game.gameId;
         gameDetailResponse.gameDescription = game.gameDescription;
         gameDetailResponse.gameName = game.gameName;
-        String gameType = gameTypeRepository.findById(game.getType().getTypeId()).get().getTypeName();
+        String gameType = gameTypeRepository.findByTypeId(game.getType().getTypeId()).getTypeName();
         gameDetailResponse.gameType = gameType;
         gameDetailResponse.releaseDate = game.releaseDate;
         gameDetailResponse.releaseLocation = game.releaseLocation;
@@ -63,7 +70,7 @@ public class GameServiceImpl implements GameService {
         }
         game.setGameName(addGameDTO.gameName);
         game.setGameDescription(addGameDTO.gameDescription);
-        game.setType(gameTypeRepository.findById(addGameDTO.typeId).get());
+        game.setType(gameTypeRepository.findByTypeId(addGameDTO.typeId));
         game.setReleaseDate(addGameDTO.getReleaseDate());
         game.setReleaseLocation(addGameDTO.getReleaseLocation());
         gameRepository.save(game);
@@ -77,7 +84,7 @@ public class GameServiceImpl implements GameService {
             gameDetailResponse.gameId = data.gameId;
             gameDetailResponse.gameDescription = data.gameDescription;
             gameDetailResponse.gameName = data.gameName;
-            String gameType = gameTypeRepository.findById(data.getType().getTypeId()).get().getTypeName();
+            String gameType = gameTypeRepository.findByTypeId(data.getType().getTypeId()).getTypeName();
             gameDetailResponse.gameType = gameType;
             gameDetailResponse.releaseDate = data.releaseDate;
             gameDetailResponse.releaseLocation = data.releaseLocation;
@@ -92,7 +99,7 @@ public class GameServiceImpl implements GameService {
                 .stream()
                 .map(data -> {
                     GameDetailResponse gameDetailResponse = new GameDetailResponse();
-                    String gameType = gameTypeRepository.findById(data.getType().getTypeId()).get().getTypeName();
+                    String gameType = gameTypeRepository.findByTypeId(data.getType().getTypeId()).getTypeName();
                     gameDetailResponse.gameType = gameType;
                     gameDetailResponse.gameName = data.gameName;
                     gameDetailResponse.gameDescription = data.gameDescription;
@@ -140,10 +147,83 @@ public class GameServiceImpl implements GameService {
         game.setGameId(id);
         game.setGameName(addGameDTO.gameName);
         game.setGameDescription(addGameDTO.gameDescription);
-        game.setType(gameTypeRepository.findById(addGameDTO.typeId).get());
+        game.setType(gameTypeRepository.findByTypeId(addGameDTO.typeId));
         game.setReleaseDate(addGameDTO.getReleaseDate());
         game.setReleaseLocation(addGameDTO.getReleaseLocation());
         gameRepository.save(game);
         return "Add game successful";
+    }
+
+    public String typeUrl(String s) {
+        switch(s) {
+            case "Phong tục":
+                return "phong-tuc.png";
+            case "Tình yêu":
+                return "tinh-yeu.png";
+            case "Nghề nghiệp":
+                return "nghe-nghiep.png";
+            case "Trí tuệ":
+                return "tri-tue.png";
+            case "Chiến trận":
+                return "chien-tran.png";
+        }
+        return null;
+    }
+
+    public List<List<FilesResponse>> getMainImageFile() {
+        List<List<FilesResponse>> listFiles = new ArrayList<>();
+        int typeCount = gameTypeRepository.findAll().size();
+        System.out.println(typeCount);
+        for (int i = 1; i <= typeCount; i++) {
+            Integer id = Integer.valueOf(i);
+            if (gameRepository.getMainImageGamesByType(id).isEmpty()) {
+                String typeGame = gameTypeRepository.findTypeById(id);
+                listFiles.add(List.of(new FilesResponse("", "", typeGame, -1, baseImageUrl + typeUrl(typeGame) )));
+                continue;
+//            throw new NotFoundException("Game type not found");
+            }
+            List<FilesResponse> filesResponses = gameRepository.getMainImageGamesByType(id)
+                    .stream()
+                    .map((data) -> {
+                        FilesResponse filesResponse = new FilesResponse();
+                        filesResponse.title = data.getGameName();
+                        filesResponse.image = baseImageUrl + data.getFileName();
+                        filesResponse.typeGame = gameTypeRepository.findTypeById(id);
+                        filesResponse.gameId = data.getGameId();
+                        filesResponse.typeImage = baseImageUrl + typeUrl(filesResponse.typeGame);
+                        return filesResponse;
+                    }).collect(Collectors.toList());
+            listFiles.add(filesResponses);
+        }
+        return listFiles;
+    }
+
+    public List<FilesResponse> getCoverImageFile(Integer id) {
+        if (gameRepository.getCoverImageGamesByGameId(id).isEmpty()) {
+//            List<FilesResponse> nullList = new ArrayList<>();
+//            nullList.add(new FilesResponse());
+            return null ;
+//            throw new NotFoundException("Game type not found");
+        }
+
+        String typeGame = gameRepository.findById(id).get().getType().getTypeName();
+        FileRequests fileRequests = gameRepository.getMainImageGamesByGameId(id);
+
+        FilesResponse filesResponse1 = new FilesResponse(fileRequests.fileName,
+                baseImageUrl + fileRequests.getFileName(), typeGame, id, baseImageUrl + typeUrl(typeGame));
+
+        List<FilesResponse> listFileResponse = gameRepository.getCoverImageGamesByGameId(id)
+                .stream()
+                .map((data) -> {
+                    FilesResponse filesResponse = new FilesResponse();
+                    filesResponse.title = data.getFileName();
+                    filesResponse.image = baseImageUrl + data.getFileName();
+                    filesResponse.typeGame = gameRepository.findById(id).get().getType().getTypeName();
+                    filesResponse.gameId = data.getGameId();
+                    filesResponse.typeImage = baseImageUrl + typeUrl(filesResponse.typeGame);
+                    return filesResponse;
+                }).collect(Collectors.toList());
+        listFileResponse.add(filesResponse1);
+        return listFileResponse;
     }
 }

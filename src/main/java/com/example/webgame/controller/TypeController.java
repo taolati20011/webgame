@@ -20,7 +20,7 @@ public class TypeController {
     }
 
     @GetMapping("/get-type/{type_id}")
-    public ResponseEntity<?> getTypeName(@PathVariable Long type_id) {
+    public ResponseEntity<?> getTypeName(@PathVariable Integer type_id) {
         return ResponseEntity.ok(typeService.getTypeName(type_id));
     }
 }

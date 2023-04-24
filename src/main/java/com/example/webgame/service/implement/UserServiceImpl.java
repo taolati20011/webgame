@@ -150,9 +150,7 @@ public class UserServiceImpl implements UserService {
                 mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
                 mimeMessageHelper.setFrom(sender);
                 mimeMessageHelper.setTo(email);
-                mimeMessageHelper.setText("TOKEN : " + token +
-                        "<br>Or <a href='fb.com'>click here</a> to change pw. " +
-                        "<br>Token valid for 10 minutes", true);
+                mimeMessageHelper.setText("Account " + userDTO.getUsername() + " register success!");
                 mimeMessageHelper.setSubject("Confirmed Sign Up Email");
 
                 javaMailSender.send(mimeMessage);
