@@ -239,7 +239,7 @@ public class UserServiceImpl implements UserService {
             mimeMessageHelper.setFrom(sender);
             mimeMessageHelper.setTo(emailDTO.getRecipient());
             mimeMessageHelper.setText("TOKEN : " + token +
-                    "<br>Or <a href='#'>click here</a> to change pw. " +
+                    "<br>Or <a href='https://traditional-game-project.vercel.app/reset-password'>click here</a> to change pw. " +
                     "<br>Token valid for 10 minutes", true);
             mimeMessageHelper.setSubject("TOKEN CHANGE PASSWORD");
 
